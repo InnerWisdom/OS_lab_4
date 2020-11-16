@@ -67,8 +67,9 @@ public class FileManager {
             File newFile = new File(nameFile,selected,folder,size);
             Node node= new Node(newFile,nodeIndex,fileNumber);
             fileNumber++;
-            if(node.getNodeSize()>5){
+            if(fileNumber>node.nodeSize){
                 nodeIndex++;
+                fileNumber=1;
             }
 
             if(folder) {
