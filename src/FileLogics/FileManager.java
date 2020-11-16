@@ -9,6 +9,8 @@ public class FileManager {
     private File fileForCopy;
     private File fileForMove;
     private PhysMemory physMemory;
+    private int nodeIndex=1;
+    private int fileNumber=1;
 
     public FileManager(PhysMemory PhisMemory) {
         this.physMemory = PhisMemory;
@@ -63,11 +65,18 @@ public class FileManager {
     public boolean createFile(String nameFile, boolean folder, int size) {
         if(selected.isFolder()) {
             File newFile = new File(nameFile,selected,folder,size);
+            Node node= new Node(newFile,nodeIndex,fileNumber);
+            fileNumber++;
+            if(node.getNodeSize()>5){
+                nodeIndex++;
+            }
+
             if(folder) {
                 newFile.setSize(1);
             } else {
                 newFile.setSize(size);
             }
+
             physMemory.searchPlace(newFile);
             selected.getChild().add(newFile);
             return true;
