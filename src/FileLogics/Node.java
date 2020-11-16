@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 public class Node {
     public int nodeSize;
+    public ArrayList<File> fileList;
     private int nodeIndex;
     private int fileIndex;
     private File file;
-    public ArrayList<File> fileList;
 
-    public Node(File file,int nodeIndex, int fileIndex){
-        nodeSize=5;
-        this.fileIndex=fileIndex;
-        this.file=file;
-        this.nodeIndex=nodeIndex;
+    public Node(File file, int nodeIndex, int fileIndex) {
+        nodeSize = 5;
+        this.fileIndex = fileIndex;
+        this.file = file;
+        this.nodeIndex = nodeIndex;
     }
+
     public int getNodeSize() {
         return nodeSize;
     }
@@ -40,8 +41,10 @@ public class Node {
     }
 
     public ArrayList<File> sortByNode(int nodeIndex) {
-        for(int i=fileIndex;i<nodeSize;i++){
-            fileList.add(getFile());
+        if (getNodeIndex() == nodeIndex) {
+            for (int i = fileIndex; i < nodeSize; i++) {
+                fileList.add(getFile());
+            }
         }
         return fileList;
     }
